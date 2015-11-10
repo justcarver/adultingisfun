@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :achievements
   has_many :tasks, through: :achievements
+
+  def points
+    0
+  end
 end
