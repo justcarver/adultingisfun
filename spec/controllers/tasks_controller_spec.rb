@@ -34,7 +34,7 @@ RSpec.describe TasksController, type: :controller do
 
   let(:invalid_attributes) {
     {
-      title: "Hi"
+      title: "HI"
     }
   }
 

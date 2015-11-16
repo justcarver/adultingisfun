@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
   has_many :achievements
   has_many :tasks, through: :achievements
 
+  def achivements
+    Achievement.where(user_id: :id)
+  end
+
   def points
-    0
+    self.achievements.sum(:points)
   end
 end

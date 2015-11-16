@@ -1,0 +1,21 @@
+<h1><%= @user.username %></h1>
+<h2>Achievements: <%= @user.achievements.count %></h2>
+<h2>Points: <%= @user.points %></h2>
+
+<table class="table table-condensed">
+  <thead>
+    <th>Date Achieved</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Points</th>
+  </thead>
+  <tbody>
+    <% @user.achievements.each do |achievement| %>
+      <tr>
+	<td><%= achievement.created_at.strftime("%b %e, %Y") %></td>
+        <td><%= achievement.task.title %></td>
+        <td><%= achievement.task.description %></td>
+        <td><%= achievement.task.points %></td>
+      </tr>
+    <% end %>
+</table>

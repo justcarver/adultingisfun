@@ -6,12 +6,14 @@ RSpec.describe "tasks/index", type: :view do
       Task.create!(
         :title => "Title",
         :description => "MyText",
-        :points => 1
+        :points => 1,
+	:expiration => Date.today + 1.day
       ),
       Task.create!(
         :title => "Title",
         :description => "MyText",
-        :points => 1
+        :points => 1,
+	:expiration => Date.today + 1.day
       )
     ])
   end

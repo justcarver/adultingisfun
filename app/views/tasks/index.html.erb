@@ -7,21 +7,35 @@
       <th>Description</th>
       <th>Points</th>
       <th>Expiration</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
-      <tr <% if task.expired? %> class="danger" <% end %>>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.points %></td>
-        <td><%= task.expiration %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if task.current? %>
+	<tr>
+	  <td><%= task.title %></td>
+	  <td><%= task.description %></td>
+	  <td><%= task.points %></td>
+	  <td><%= task.expiration %></td>
+	  <td>
+	    <% if user_signed_in? && current_user.achievements.where(task_id: task.id) == [] %>
+	      <%= 
+		button_to 'Claim Acehievement',
+			{ :method => :post,
+			  :controller => "achievement",
+			  :action => "create",
+			  :achievement => { user_id: current_user.id,
+					  task_id: task.id,
+					  points: task.points }
+			},
+		 	{ class: 'btn btn-success' }
+	      %>
+	    <% end %>
+	  </td>
+	</tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
