@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -29,6 +30,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 # Use devise
 gem 'devise'
+
+#Rails_12factor gem for Heroku
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
