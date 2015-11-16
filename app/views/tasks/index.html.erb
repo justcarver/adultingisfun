@@ -1,45 +1,58 @@
-<h1>Listing Tasks</h1>
+<h1>Welcome to Adulting is fun</h1>
+<div class="lead-section">
+  <p class="lead">Where you get points for the boring adult stuff you do anyway.</p>
+  <% if !user_signed_in? %>
+    <p class="lead">Sign in or Sign Up below to start using the app</p>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-success btn-large" %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-large" %>
+  <% end %>
+</div>
 
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Points</th>
-      <th>Expiration</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="achievement-list">
+  <h3>Currently Achievable Tasks</h3>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Points</th>
+	<th>Expiration</th>
+	<th></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <% if task.current? %>
-	<tr>
-	  <td><%= task.title %></td>
-	  <td><%= task.description %></td>
-	  <td><%= task.points %></td>
-	  <td><%= task.expiration %></td>
-	  <td>
-	    <% if user_signed_in? && current_user.achievements.where(task_id: task.id) == [] %>
-	      <%= 
-		button_to 'Claim Acehievement',
-			{ :method => :post,
-			  :controller => "achievement",
-			  :action => "create",
-			  :achievement => { user_id: current_user.id,
-					  task_id: task.id,
-					  points: task.points }
-			},
-		 	{ class: 'btn btn-success' }
-	      %>
-	    <% end %>
-	  </td>
-	</tr>
+    <tbody>
+      <% @tasks.order(:expiration).each do |task| %>
+	<% if task.current? %>
+	  <tr>
+	    <td><%= task.title %></td>
+	    <td><%= task.description %></td>
+	    <td><%= task.points %></td>
+	    <td><%= task.expiration %></td>
+	    <td>
+	      <% if user_signed_in? && current_user.achievements.where(task_id: task.id) == [] %>
+		<%= 
+		  button_to 'Claim Acehievement',
+			  { :method => :post,
+			    :controller => "achievement",
+			    :action => "create",
+			    :achievement => { user_id: current_user.id,
+					    task_id: task.id,
+					    points: task.points }
+			  },
+			  { class: 'btn btn-success' }
+		%>
+	      <% else %>
+		<% if user_signed_in? %>
+		  <button class="btn btn-primary" disabled="disabled">Achievement Claimed!</button>
+		<% else %>
+		  <button class="btn btn-primary" disabled="disabled">Sign In to Claim</button>
+		<% end %>
+	      <% end %>
+	    </td>
+	  </tr>
+	<% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,9 @@
+
+<h1>Welcome to Adulting is fun</h1>
+<div class="lead-section">
+  <p class="lead">Where you get points for the boring adult stuff you do anyway</p>
+  <% if !user_signed_in? %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-success btn-large" %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-large" %>
+  <% end %>
+</div>

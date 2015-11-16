@@ -10,7 +10,7 @@
     <th>Points</th>
   </thead>
   <tbody>
-    <% @user.achievements.each do |achievement| %>
+    <% @user.achievements.order(created_at: :desc).each do |achievement| %>
       <tr>
 	<td><%= achievement.created_at.strftime("%b %e, %Y") %></td>
         <td><%= achievement.task.title %></td>
