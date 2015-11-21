@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
+gem "autoprefixer-rails"
 # Use Simple Form
 gem 'simple_form'
 # Use devise
