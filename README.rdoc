@@ -1,10 +1,17 @@
-== README
+# Adulting is Fun!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## A web app to make the boarding parts of your adult life more fun!
 
+
+Ruby - 2.2.1
+Rails - 4.2.4
+
+Developed using PostgreSQL.
+
+Download and run `rake db:create` and then `rake db:migrate` to get started.
 Things you may want to cover:
 
+--------------------------------------------------
 * Ruby version
 
 * System dependencies
