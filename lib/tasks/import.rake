@@ -14,7 +14,7 @@ namespace :import do
 			  points: points.to_i,
 			  expiration: Date.strptime(expiration, "%m/%d/%Y"),
 			  category: category,
-			  active: Date.strptime(expiration, "%m/%d/%Y")
+			  active: Date.strptime(active, "%m/%d/%Y")
 			)
       puts "#{title} - #{task.errors.full_messages.join(",")}" if task.errors.any?
       counter = counter + 1 if task.persisted?
