@@ -11,7 +11,11 @@ class Task < ActiveRecord::Base
     Date.today > self.expiration
   end
 
+  def active?
+    Date.today > self.active
+  end
+
   def current?
-    Date.today < self.expiration
+    self.active? && !self.expired?
   end
 end
