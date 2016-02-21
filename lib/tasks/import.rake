@@ -15,6 +15,7 @@ namespace :import do
 			  expiration: Date.strptime(expiration, "%m/%d/%Y"),
 			  category: category,
 			  active: Date.strptime(expiration, "%m/%d/%Y")
+			)
       puts "#{title} - #{task.errors.full_messages.join(",")}" if task.errors.any?
       counter = counter + 1 if task.persisted?
     end
