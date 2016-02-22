@@ -21,3 +21,64 @@
   font-size: .75em;
   padding: 25px;
 }
+
+.task {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px 0;
+  position: relative;
+  background: none;
+}
+
+.task-description {
+  padding-left: 70px;
+  padding-top: 10px;
+  min-height: 75px;
+}
+
+.point-display {
+  float: right;
+}
+
+.task-button {
+  text-align: center;
+}
+
+.task::after {
+  content: " ";
+  opacity: 0.5;
+  max-width: 50px;
+  max-height: 50px;
+  position:absolute;
+  left: 15px;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transform: translate( 0, -50%);
+}
+
+.home-payment::after {
+  background-image: url(/images/icons/home-payment.png);
+}
+
+.electricity-bill::after {
+  background-image: url(/images/icons/electricity-bill.png);
+}
+
+.appt-payment::after {
+  background-image: url(/images/icons/appt-payment.png);
+}
+
+.gas-bill::after {
+  background-image: url(/images/icons/gas-bill.png);
+}
+
+.water-bill::after {
+  background-image: url(/images/icons/water-bill.png);
+}
+
+.car-payment::after {
+  background-image: url(/images/icons/car-payment.png);
+}

@@ -10,38 +10,28 @@
 
 <div class="achievement-list">
   <h3>Currently Achievable Tasks</h3>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-	<th>Title</th>
-	<th>Description</th>
-	<th>Points</th>
-	<th>Expiration</th>
-	<th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @tasks.order(:expiration).each do |task| %>
-	<% if task.current? %>
-	  <tr>
-	    <td><%= task.title %></td>
-	    <td><%= task.description %></td>
-	    <td><%= task.points %></td>
-	    <td><%= task.expiration %></td>
-	    <td>
+  <div class="row">
+    <% @tasks.order(:expiration).each do |task| %>
+      <% if task.current? %>
+	<div class="col-sm-4">
+	  <div class="task <%= task.category %>">
+	    <h4 class="task-title"><%= task.title %>
+	    <span class="point-display"> (<%= task.points %>)</span></h4>
+	    <div class="task-body">
+	      <div class="task-description"><%= task.description %></div>
+	    </div>
+	    <div class="task-button">
 	      <% if user_signed_in? && current_user.achievements.where(task_id: task.id) == [] %>
-		<%= 
-		  button_to 'Claim Acehievement',
-			  { :method => :post,
-			    :controller => "achievement",
-			    :action => "create",
-			    :achievement => { user_id: current_user.id,
-					    task_id: task.id,
-					    points: task.points }
-			  },
-			  { class: 'btn btn-success' }
-		%>
+		<%= button_to 'Claim Acehievement',
+			    { :method => :post,
+			      :controller => "achievement",
+			      :action => "create",
+			      :achievement => { user_id: current_user.id,
+						task_id: task.id,
+						points: task.points }
+			    },
+			    { class: 'btn btn-success' }
+	       %>
 	      <% else %>
 		<% if user_signed_in? %>
 		  <button class="btn btn-primary" disabled="disabled">Achievement Claimed!</button>
@@ -49,10 +39,10 @@
 		  <button class="btn btn-primary" disabled="disabled">Sign In to Claim</button>
 		<% end %>
 	      <% end %>
-	    </td>
-	  </tr>
-	<% end %>
+	    </div>
+	  </div>
+	</div>
       <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </div>
 </div>
